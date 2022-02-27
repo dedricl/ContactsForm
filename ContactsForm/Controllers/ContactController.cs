@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ContactsForm.Data;
+using ContactsForm.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +10,18 @@ namespace ContactsForm.Controllers
 {
     public class ContactController : Controller
     {
+        private readonly ApplicationDBContext _db;
+
+        public ContactController(ApplicationDBContext db)
+        {
+            _db = db;
+        }
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<ContactModel> objList = _db.Contacts;
+            return View(objList);
             
         }
+       
     }
 }
