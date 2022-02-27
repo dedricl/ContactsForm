@@ -1,7 +1,49 @@
-﻿
+﻿@model IEnumerable<ContactsForm.Models.ContactModel>
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="container p-3">
+    <!-- Content here -->
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">All Contacts</h2>
+        </div>
+        <div class="col-6">
+            Create New Contact
+        </div>
+    </div>
+    <br />
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email Address</th>
+                    <th scope="col">Phone Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var contact in Model)
+                {
+                <tr>
+
+                    <td>@contact.FirstName</td>
+                    <td>@contact.LastName</td>
+                    <td>@contact.EmailAddress</td>
+                    <td>@contact.PhoneNumber</td>
+                </tr>
+                }
+
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No Contacts Yet</p>
+    }
+
+</div>
 
