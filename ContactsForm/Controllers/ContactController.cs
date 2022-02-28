@@ -22,10 +22,23 @@ namespace ContactsForm.Controllers
             return View(objList);
             
         }
+        //Get-Create
         public IActionResult Create()
         {
             
             return View();
+
+        }
+
+        //Post-Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(ContactModel obj)
+        {
+            _db.Contacts.Add(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+            
 
         }
 
