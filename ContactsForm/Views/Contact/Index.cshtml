@@ -12,6 +12,7 @@
         <div class="col-6 text-right">
             <a asp-controller="Contact" asp-action="Create" class="btn btn-outline-primary">Create New Contact</a>
         </div>
+
     </div>
     <br />
     @if (Model.Count() > 0)
@@ -28,22 +29,35 @@
             <tbody>
                 @foreach (var contact in Model)
                 {
-                <tr>
+                    <tr>
 
-                    <td>@contact.FirstName</td>
-                    <td>@contact.LastName</td>
-                    <td>@contact.EmailAddress</td>
-                    <td>@contact.PhoneNumber</td>
-                </tr>
+                        <td>@contact.FirstName</td>
+                        <td>@contact.LastName</td>
+                        <td>@contact.EmailAddress</td>
+                        <td>@contact.PhoneNumber</td>
+                        <td>
+                            <a asp-controller="Contact" asp-action="Update" asp-route-id="@contact.ContactId" class="btn btn-outline-primary">Update Contact</a>
+
+                        </td>
+                        <td>
+                            <a asp-controller="Contact" asp-action="Delete" asp-route-id="@contact.ContactId" class="btn btn-outline-danger">Delete Contact</a>
+
+                        </td>
+
+                    </tr>
                 }
 
             </tbody>
         </table>
+
     }
     else
     {
         <p>No Contacts Yet</p>
     }
 
+
 </div>
+
+
 

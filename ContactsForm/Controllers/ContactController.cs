@@ -42,6 +42,73 @@ namespace ContactsForm.Controllers
 
         }
 
+        //Get-Delete
+        
+        public IActionResult Delete(int? id)
+        {
+           
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var obj = _db.Contacts.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+
+
+        }
+
+        //Post-Delete
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeletePost(int ContactId)
+        {
+            var obj = _db.Contacts.Find(ContactId);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            _db.Contacts.Remove(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+
+
+        }
+
+        //Update-Delete
+
+        public IActionResult Update(int? id)
+        {
+
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var obj = _db.Contacts.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+
+
+        }
+
+        //Post-Update
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Update(ContactModel obj)
+        {
+            _db.Contacts.Update(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+
+
+        }
+
 
     }
 }
