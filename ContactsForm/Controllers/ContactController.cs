@@ -35,10 +35,16 @@ namespace ContactsForm.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(ContactModel obj)
         {
-            _db.Contacts.Add(obj);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
-            
+            if (ModelState.IsValid)
+            {
+                _db.Contacts.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+
+
+            }
+            return View(obj);
+
 
         }
 
