@@ -19,7 +19,7 @@ namespace ContactsForm.Models
 
         public string EmailAddress { get; set; }
         [Phone]
-        [RegularExpression(@"[0-9]{3}-[0-9]{3}-[0-9]{4}", ErrorMessage ="Phone Number must be in 555-555-5555 format")]
+        [RegularExpression(@"[0-9]{3}-[0-9]{3}-[0-9]{4}", ErrorMessage ="Phone Number must be in XXX-XXX-XXXX format")]
         
         public string PhoneNumber { get; set; }
     }
